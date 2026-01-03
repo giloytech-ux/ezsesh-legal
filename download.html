@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download EZ Sesh - Book Musicians in the Philippines</title>
+  <meta name="description" content="Download EZ Sesh - the easiest way to book musicians for your events in the Philippines.">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Download EZ Sesh">
+  <meta property="og:description" content="The easiest way to book musicians for your events in the Philippines.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://giloytech-ux.github.io/ezsesh-legal/download">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      font-size: 72px;
+      margin-bottom: 16px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      color: #1a1a2e;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .loading {
+      display: none;
+      margin: 24px 0;
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e5e5ea;
+      border-top-color: #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-android {
+      background: linear-gradient(135deg, #34A853 0%, #2E7D32 100%);
+      color: white;
+    }
+
+    .btn-ios {
+      background: linear-gradient(135deg, #007AFF 0%, #0055CC 100%);
+      color: white;
+    }
+
+    .btn-icon {
+      font-size: 20px;
+    }
+
+    .beta-badge {
+      display: inline-block;
+      background: #FF9500;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .info-card {
+      background: #FFF9E6;
+      border: 1px solid #FFE082;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .info-card.hidden {
+      display: none;
+    }
+
+    .info-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #8B6914;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card-text {
+      font-size: 13px;
+      color: #6B5310;
+      line-height: 1.5;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 16px;
+    }
+
+    .feature {
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .feature-text {
+      font-size: 11px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .footer a {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Desktop styles */
+    @media (min-width: 768px) {
+      .container {
+        padding: 48px 40px;
+      }
+
+      .web-note {
+        display: block;
+        margin-top: 24px;
+        padding: 16px;
+        background: #E3F2FD;
+        border-radius: 12px;
+        font-size: 14px;
+        color: #1565C0;
+      }
+    }
+
+    .web-note {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🎵</div>
+    <h1>EZ Sesh</h1>
+    <p class="subtitle">The easiest way to book musicians for your events in the Philippines</p>
+
+    <!-- Loading state (shown during redirect) -->
+    <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Redirecting to store...</p>
+    </div>
+
+    <!-- Download buttons -->
+    <div class="buttons" id="buttons">
+      <a href="https://play.google.com/store/apps/details?id=com.ezsesh.app"
+         class="btn btn-android"
+         id="android-btn">
+        <span class="btn-icon">🤖</span>
+        <span>Get on Google Play</span>
+      </a>
+      <a href="https://apps.apple.com/app/ezsesh/id000000000"
+         class="btn btn-ios"
+         id="ios-btn">
+        <span class="btn-icon">🍎</span>
+        <span>Get on App Store</span>
+      </a>
+    </div>
+
+    <!-- Beta testing info (shown when in beta) -->
+    <div class="info-card" id="beta-note">
+      <div class="info-card-title">
+        <span>🧪</span>
+        <span>Beta Testing</span>
+      </div>
+      <p class="info-card-text">
+        EZ Sesh is currently in beta testing. The app may not be publicly available in the stores yet.
+        Contact us if you'd like early access!
+      </p>
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🎸</div>
+        <div class="feature-text">Find Musicians</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📅</div>
+        <div class="feature-text">Book Events</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <div class="feature-text">Chat & Confirm</div>
+      </div>
+    </div>
+
+    <!-- Desktop note -->
+    <div class="web-note" id="web-note">
+      📱 EZ Sesh is a mobile app. Open this link on your phone to download!
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
+      <br><br>
+      © 2025 EZ Sesh. All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Configuration - UPDATE THESE VALUES
+      const IS_BETA = true; // Set to false when app is in production
+      const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ezsesh.app';
+      const APP_STORE_URL = 'https://apps.apple.com/app/ezsesh/id000000000'; // Update with real ID
+      const TESTFLIGHT_URL = 'https://testflight.apple.com/join/XXXXXX'; // Update with real code
+
+      // Detect platform
+      const ua = navigator.userAgent.toLowerCase();
+      const isAndroid = /android/.test(ua);
+      const isIOS = /iphone|ipad|ipod/.test(ua);
+      const isMobile = isAndroid || isIOS;
+
+      // Get elements
+      const loading = document.getElementById('loading');
+      const buttons = document.getElementById('buttons');
+      const androidBtn = document.getElementById('android-btn');
+      const iosBtn = document.getElementById('ios-btn');
+      const betaNote = document.getElementById('beta-note');
+      const webNote = document.getElementById('web-note');
+
+      // Update button URLs based on beta status
+      if (IS_BETA) {
+        // Show beta note
+        betaNote.classList.remove('hidden');
+
+        // Update iOS button for TestFlight during beta
+        if (TESTFLIGHT_URL && TESTFLIGHT_URL !== 'https://testflight.apple.com/join/XXXXXX') {
+          iosBtn.href = TESTFLIGHT_URL;
+          iosBtn.innerHTML = '<span class="btn-icon">🧪</span><span>Join iOS Beta (TestFlight)</span>';
+        }
+      } else {
+        // Hide beta note in production
+        betaNote.classList.add('hidden');
+      }
+
+      // Auto-redirect on mobile
+      if (isMobile) {
+        // Show loading state
+        loading.classList.add('active');
+
+        // Determine target URL
+        let targetUrl;
+        if (isAndroid) {
+          targetUrl = PLAY_STORE_URL;
+        } else if (isIOS) {
+          targetUrl = IS_BETA && TESTFLIGHT_URL !== 'https://testflight.apple.com/join/XXXXXX'
+            ? TESTFLIGHT_URL
+            : APP_STORE_URL;
+        }
+
+        // Redirect after short delay (allows page to render first)
+        setTimeout(function() {
+          if (targetUrl) {
+            window.location.href = targetUrl;
+          }
+        }, 1500);
+
+        // Hide loading and show buttons after timeout (fallback if redirect fails)
+        setTimeout(function() {
+          loading.classList.remove('active');
+        }, 3000);
+      }
+
+      // Show desktop note on non-mobile
+      if (!isMobile && webNote) {
+        webNote.style.display = 'block';
+      }
+
+      // Track button clicks (optional analytics)
+      androidBtn.addEventListener('click', function() {
+        console.log('[Download] Android button clicked');
+      });
+
+      iosBtn.addEventListener('click', function() {
+        console.log('[Download] iOS button clicked');
+      });
+    })();
+  </script>
+</body>
+</html>
