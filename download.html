@@ -141,47 +141,6 @@
       font-size: 20px;
     }
 
-    .beta-badge {
-      display: inline-block;
-      background: #FF9500;
-      color: white;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 10px;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-
-    .info-card {
-      background: #FFF9E6;
-      border: 1px solid #FFE082;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 24px;
-      text-align: left;
-    }
-
-    .info-card.hidden {
-      display: none;
-    }
-
-    .info-card-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #8B6914;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .info-card-text {
-      font-size: 13px;
-      color: #6B5310;
-      line-height: 1.5;
-    }
-
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -271,18 +230,6 @@
       </a>
     </div>
 
-    <!-- Beta testing info (shown when in beta) -->
-    <div class="info-card" id="beta-note">
-      <div class="info-card-title">
-        <span>🧪</span>
-        <span>Beta Testing</span>
-      </div>
-      <p class="info-card-text">
-        EZ Sesh is currently in beta testing. The app may not be publicly available in the stores yet.
-        Contact us if you'd like early access!
-      </p>
-    </div>
-
     <!-- Features -->
     <div class="features">
       <div class="feature">
@@ -314,11 +261,9 @@
 
   <script>
     (function() {
-      // Configuration - UPDATE THESE VALUES
-      const IS_BETA = false; // App is now in production
+      // Configuration
       const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ezsesh.app';
       const APP_STORE_URL = 'https://apps.apple.com/ph/app/ez-sesh/id6757092728';
-      const TESTFLIGHT_URL = ''; // No longer needed - app is live
 
       // Detect platform
       const ua = navigator.userAgent.toLowerCase();
@@ -328,26 +273,9 @@
 
       // Get elements
       const loading = document.getElementById('loading');
-      const buttons = document.getElementById('buttons');
       const androidBtn = document.getElementById('android-btn');
       const iosBtn = document.getElementById('ios-btn');
-      const betaNote = document.getElementById('beta-note');
       const webNote = document.getElementById('web-note');
-
-      // Update button URLs based on beta status
-      if (IS_BETA) {
-        // Show beta note
-        betaNote.classList.remove('hidden');
-
-        // Update iOS button for TestFlight during beta
-        if (TESTFLIGHT_URL && TESTFLIGHT_URL !== 'https://testflight.apple.com/join/XXXXXX') {
-          iosBtn.href = TESTFLIGHT_URL;
-          iosBtn.innerHTML = '<span class="btn-icon">🧪</span><span>Join iOS Beta (TestFlight)</span>';
-        }
-      } else {
-        // Hide beta note in production
-        betaNote.classList.add('hidden');
-      }
 
       // Auto-redirect on mobile
       if (isMobile) {
@@ -359,9 +287,7 @@
         if (isAndroid) {
           targetUrl = PLAY_STORE_URL;
         } else if (isIOS) {
-          targetUrl = IS_BETA && TESTFLIGHT_URL !== 'https://testflight.apple.com/join/XXXXXX'
-            ? TESTFLIGHT_URL
-            : APP_STORE_URL;
+          targetUrl = APP_STORE_URL;
         }
 
         // Redirect after short delay (allows page to render first)
